@@ -58,7 +58,7 @@
  <HintPath>C:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="PDK">
- <HintPath>C:/Users/Gebruiker/Desktop/pillo/PDK-ExampleProject/Pillo_FireFighters/Assets/Pillo/PDK.dll</HintPath>
+ <HintPath>C:/Users/Gebruiker/Documents/GitHub/PilloSummerJam2015/Pillo_FireFighters/Assets/Pillo/PDK.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity5/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
