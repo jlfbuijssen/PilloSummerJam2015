@@ -4,7 +4,6 @@ using System.Collections;
 public class WindowController : MonoBehaviour {
 
 	public static string COLLIDER_TAG = "Water";
-	public bool debug_col;
 
 //	// Use this for initialization
 //	void Start () {
@@ -18,8 +17,8 @@ public class WindowController : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		print (col.tag);
 		if (col.GetComponent<Collider>().CompareTag (COLLIDER_TAG)) {
-			print ("Trigger Entered");
-			debug_col = true;
+			Debug.Log("Trigger Entered");
+
 		}
 	}
 
