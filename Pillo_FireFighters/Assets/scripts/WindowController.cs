@@ -105,15 +105,18 @@ public class WindowController : MonoBehaviour {
 		case 3:
 			//big fire
 
-			Instantiate (fireLarge,this.transform.position,Quaternion.identity);
+			GameObject fireInstantL = Instantiate (fireLarge,this.transform.position,Quaternion.identity) as GameObject;
+			fireInstantL.transform.rotation = Quaternion.Euler(270,0,0);
 			break;
 		case 2:
 			//med fire
-			Instantiate (fireMedium,this.transform.position,Quaternion.identity);
+			GameObject fireInstantM = Instantiate (fireMedium,this.transform.position,Quaternion.identity) as GameObject;
+			fireInstantM.transform.rotation = Quaternion.Euler(270,0,0);
 			break;
 		case 1:
 			//small fire
-			Instantiate (fireSmall,this.transform.position,Quaternion.identity);
+			GameObject fireInstantS = Instantiate (fireSmall,this.transform.position,Quaternion.identity) as GameObject;
+			fireInstantS.transform.rotation = Quaternion.Euler(270,0,0);
 			break;
 		case 0:
 			//no fire
