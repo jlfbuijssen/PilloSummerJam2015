@@ -9,7 +9,8 @@ public class BuildingController : MonoBehaviour {
 	public GameObject[] window;
 	float spreadDelay;
 	public int initialFires = 3;
-	
+
+
 	// public constants
 	//public static bool RANDOM = true;
 	public static float MAX_RUN_TIME = 100.0F;
