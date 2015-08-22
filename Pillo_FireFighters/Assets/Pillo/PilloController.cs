@@ -104,7 +104,7 @@ public class PilloController : MonoBehaviour
 		switch (m_state) 
 		{
 		case 0:
-			print("Started Example project...");
+//			print("Started Example project...");
 			m_state = 1;
 			break;
 		case 1:
