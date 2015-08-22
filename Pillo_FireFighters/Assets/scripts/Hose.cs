@@ -77,8 +77,6 @@ public class Hose : MonoBehaviour {
 
 		turnHeight = pumpPressure - 100*(water.transform.eulerAngles.x/maxHeight);
 
-		print (turnHeight);
-
 		water.transform.Rotate(new Vector3(turnHeight/(100/maxHeight), 0, 0));
 
 
