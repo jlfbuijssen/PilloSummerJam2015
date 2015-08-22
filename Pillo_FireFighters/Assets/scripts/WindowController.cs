@@ -69,11 +69,9 @@ public class WindowController : MonoBehaviour {
 
 		}
 
-		if (fireState <= 0 && burning) {
+		if (fireState == 0) {
 		
 			burning = false;
-
-			fireState = 0;
 		
 		}
 	
@@ -107,12 +105,12 @@ public class WindowController : MonoBehaviour {
 
 	void Update(){
 
+		CheckFireState ();
+
 		if (burning) {
-			
+
 			GrowFire();
 		}
-
-		CheckFireState ();
 
 	}
 //	void OnTriggerExit(Collider col){
