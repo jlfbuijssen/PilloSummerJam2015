@@ -9,9 +9,10 @@ public class Hose : MonoBehaviour {
 	public float addedPressure = 20.0f;
 	public float pressureLoss = 1.0f;
 	public float maxHeight = -50.0f;
-	public GameObject water;
+
 
 	private float maxPressure = 100.0f;
+	private GameObject water;
 
 
 	private float turnDirection = 0.0f;
@@ -23,6 +24,8 @@ public class Hose : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		water = GameObject.Find ("water1337");
 	
 	}
 
