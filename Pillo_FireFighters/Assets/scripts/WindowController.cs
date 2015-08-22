@@ -7,14 +7,17 @@ public class WindowController : MonoBehaviour {
 	public float fireStrength = 0.0f;
 	public bool burning = false;
 
+	private float waterStrength = 0.0f;
+	private float fireGrowRate = 0.0f;
 	private float maxFireStrength = 99.0f;
 	private int maxFireState = 3;
 	private int fireState = 0;
 
 //	// Use this for initialization
-//	void Start () {
-//	
-//	}
+	void Start () {
+		fireGrowRate = GameObject.Find ("player").GetComponent<Hose> ().fireGrowRate;
+		waterStrength = GameObject.Find ("player").GetComponent<Hose> ().hoseStrength;
+	}
 //	void OnTriggerEnter(Collider col){
 //		print ("TEST");
 //	
@@ -23,10 +26,21 @@ public class WindowController : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		print (col.tag);
 		if (col.GetComponent<Collider>().CompareTag (COLLIDER_TAG)) {
-			Debug.Log("Trigger Entered");
+			//Debug.Log("Trigger Entered");
+
+			if(burning){
+				fireStrength -= waterStrength;
+			}
 
 		}
 	}
+
+	void GrowFire(){
+		
+		fireStrength += fireGrowRate * Time.deltaTime;
+		
+	}
+
 
 	void CheckFireState(){
 
@@ -45,8 +59,6 @@ public class WindowController : MonoBehaviour {
 
 			ChangeFireState();
 
-			print ("firestate:" + fireState);
-
 		}
 
 		if ((maxFireStrength / (maxFireState-1))*fireState < fireStrength) {
@@ -55,7 +67,12 @@ public class WindowController : MonoBehaviour {
 			
 			ChangeFireState();
 
-			print ("firestate:" + fireState);
+		}
+
+		if (fireState == 0) {
+		
+			burning = false;
+		
 		}
 	
 	}
@@ -89,6 +106,11 @@ public class WindowController : MonoBehaviour {
 	void Update(){
 
 		CheckFireState ();
+
+		if (burning) {
+
+			GrowFire();
+		}
 
 	}
 //	void OnTriggerExit(Collider col){

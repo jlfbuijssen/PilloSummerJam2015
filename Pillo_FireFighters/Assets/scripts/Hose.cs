@@ -9,7 +9,12 @@ public class Hose : MonoBehaviour {
 	public float addedPressure = 20.0f;
 	public float pressureLoss = 1.0f;
 	public float maxHeight = -50.0f;
+	public float fireGrowRate = 1.0f;
+	public float hoseStrength = 5.0f;
 
+	public GameObject animState1;
+	public GameObject animState2;
+	public GameObject animState3;
 
 	private float maxPressure = 100.0f;
 	private GameObject water;
@@ -50,10 +55,25 @@ public class Hose : MonoBehaviour {
 
 	void Player2(){
 
+		if (animState2.activeSelf == true) {
+		
+			if(pumpPressed){
+				animState3.SetActive(true);
+			}
+			else{
+				animState1.SetActive(true);
+			}
+
+			animState2.SetActive(false);
+		}
+
 		//pump up
 		if (PilloController.GetSensor (PilloID.Pillo2) == 0 && pumpPressed == true) {
 		
 			pumpPressed = false;
+
+			animState3.SetActive(false);
+			animState2.SetActive(true);
 		
 		}
 
@@ -61,6 +81,9 @@ public class Hose : MonoBehaviour {
 		if (PilloController.GetSensor (PilloID.Pillo2) > 0 && pumpPressed == false) {
 			
 			pumpPressed = true;
+
+			animState1.SetActive(false);
+			animState2.SetActive(true);
 
 			pumpPressure +=	addedPressure;
 
@@ -74,7 +97,7 @@ public class Hose : MonoBehaviour {
 		//pressure down
 		if (pumpPressure > 0) {
 
-			pumpPressure -= pressureLoss;
+			pumpPressure -= pressureLoss*Time.deltaTime;
 
 		}
 
@@ -84,6 +107,7 @@ public class Hose : MonoBehaviour {
 
 
 	}
+
 
 	
 	// Update is called once per frame
