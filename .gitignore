@@ -116,5 +116,10 @@ Pillo_FireFighters/Pillo_FireFighters.userprefs
 Pillo_FireFighters/Pillo_FireFighters-csharp.sln
 *.sln
 *.csproj
+<<<<<<< HEAD
 Pillo_FireFighters/Assembly-CSharp-vs.csproj
 *.csproj
+=======
+Pillo_FireFighters/Pillo_FireFighters.userprefs
+>>>>>>> origin/master
+Pillo_FireFighters/Assets/ScriptsBackup.zip
