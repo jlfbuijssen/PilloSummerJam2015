@@ -10,18 +10,23 @@ public class WindowController : MonoBehaviour {
 //	void Start () {
 //	
 //	}
-	void OnTriggerEnter(Collision col){
-		print (col.collider.tag);
-		if (col.collider.CompareTag (COLLIDER_TAG)) {
+//	void OnTriggerEnter(Collider col){
+//		print ("TEST");
+//	
+//	}
+
+	void OnTriggerEnter(Collider col){
+		print (col.tag);
+		if (col.GetComponent<Collider>().CompareTag (COLLIDER_TAG)) {
 			print ("Trigger Entered");
 			debug_col = true;
 		}
 	}
 
-	void OnTriggerExit(Collision col){
-		if (col.collider.tag.Equals (COLLIDER_TAG)) {
-			print ("Exit Trigger");
-			debug_col = false;
-		}
-	}
+//	void OnTriggerExit(Collider col){
+//		if (col.tag.Equals (COLLIDER_TAG)) {
+//			print ("Exit Trigger");
+//			debug_col = false;
+//		}
+//	}
 }

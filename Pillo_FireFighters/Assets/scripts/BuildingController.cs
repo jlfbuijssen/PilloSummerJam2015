@@ -34,8 +34,8 @@ public class BuildingController : MonoBehaviour {
 //		window[2][1];
 //		window[3][1];
 		window = GameObject.FindGameObjectsWithTag ("Window");
-		Invoke ("startRain", MAX_RUN_TIME);
-		InvokeRepeating ("spreadFire", INIT_SPREAD_DELAY, SPREAD_TIMER_RATE);
+		//Invoke ("startRain()", MAX_RUN_TIME);
+		//InvokeRepeating ("spreadFire()", INIT_SPREAD_DELAY, SPREAD_TIMER_RATE);
 
 
 	}
@@ -52,7 +52,7 @@ public class BuildingController : MonoBehaviour {
 		}
 	}
 
-	void fireSpreader(){
+	void spreadFire(){
 		int r;
 		r = Random.Range (0, window.Length);
 

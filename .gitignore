@@ -80,3 +80,5 @@ Pillo_FireFighters/Assembly-CSharp.csproj
 Pillo_FireFighters/Pillo_FireFighters.userprefs
 *.userprefs
 *.sln
+*.meta
+*.userprefs
