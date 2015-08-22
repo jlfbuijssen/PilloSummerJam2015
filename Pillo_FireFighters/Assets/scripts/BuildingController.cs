@@ -21,8 +21,7 @@ public class BuildingController : MonoBehaviour {
 	public static int LIGHT_ATTEMPTS = 50;
 	public static string WINDOW_TAG = "Window";
 	
-	
-	
+
 	// Use this for initialization
 	void Start () {
 		
