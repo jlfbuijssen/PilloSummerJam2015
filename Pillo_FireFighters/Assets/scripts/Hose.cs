@@ -25,16 +25,10 @@ public class Hose : MonoBehaviour {
 	}
 
 	void Player2(){
-		if (PilloController.GetSensor (PilloID.Pillo2) == 0 && pumpPressed == true) {
+		if (PilloController.GetSensor (PilloID.Pillo2) == 0) {
 		
-			pumpPressed = false;
-		
-		}
 
-		if (PilloController.GetSensor (PilloID.Pillo2) > 0 && pumpPressed == false) {
-			
-			pumpPressed = true;
-				
+		
 		}
 	}
 
