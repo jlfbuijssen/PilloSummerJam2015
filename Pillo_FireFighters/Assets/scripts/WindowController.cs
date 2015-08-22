@@ -95,6 +95,9 @@ public class WindowController : MonoBehaviour {
 			burning = false;
 			
 			fireState = 0;
+
+			Destroy (currentFire);
+			currentFire = null;
 			
 		}
 		
@@ -102,23 +105,30 @@ public class WindowController : MonoBehaviour {
 	
 	void ChangeFireState(){
 
-		Destroy (currentFire);
-		currentFire = null;
+
 		switch(fireState)
 		{
 		case 3:
 			//big fire
-
+			Destroy (currentFire);
+			currentFire = null;
 			currentFire = Instantiate (fireLarge,this.transform.position,Quaternion.identity) as GameObject;
+			currentFire.transform.rotation = Quaternion.Euler(270,0,0);
 
 			break;
 		case 2:
 			//med fire
+			Destroy (currentFire);
+			currentFire = null;
 			currentFire = Instantiate (fireMedium,this.transform.position,Quaternion.identity) as GameObject;
+			currentFire.transform.rotation = Quaternion.Euler(270,0,0);
 			break;
 		case 1:
 			//small fire
+			Destroy (currentFire);
+			currentFire = null;
 			currentFire = Instantiate (fireSmall,this.transform.position,Quaternion.identity) as GameObject;
+			currentFire.transform.rotation = Quaternion.Euler(270,0,0);
 			break;
 		case 0:
 			//no fire
@@ -128,7 +138,7 @@ public class WindowController : MonoBehaviour {
 			print ("no fireState detected");
 			break;
 		}
-		currentFire.transform.rotation = Quaternion.Euler(270,0,0);
+
 	}
 	
 	void Update(){
