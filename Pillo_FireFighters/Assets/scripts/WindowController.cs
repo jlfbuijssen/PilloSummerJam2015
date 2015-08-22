@@ -98,7 +98,9 @@ public class WindowController : MonoBehaviour {
 
 			Destroy (currentFire);
 			currentFire = null;
-			
+			//transform.parent.getComponent<BuildingController>().burningWindows--;
+			gameObject.GetComponentInParent<BuildingController>().burningWindows--;
+
 		}
 		
 	}

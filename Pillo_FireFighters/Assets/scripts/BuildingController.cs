@@ -4,29 +4,30 @@ using System.Collections;
 public class BuildingController : MonoBehaviour {
 	
 	public bool raining = false;
-	public float spreadTimer = 10.0F;
 	//	public float elapsedTime;
 	public GameObject[] window;
-	float spreadDelay;
 	public int initialFires = 3;
+	public int burningWindows;
 
 
 	// public constants
 	//public static bool RANDOM = true;
-	public static float MAX_RUN_TIME = 100.0F;
+	public float gameRunTime = 100.0F;
 	//	public static int WINDOW_ROWS = 3;
 	//	public static int WINDOW_COLUMNS = 4;
-	public static float INIT_SPREAD_DELAY = 2.0F;
-	public static float SPREAD_TIMER_RATE = 2.0F;
-	public static int LIGHT_ATTEMPTS = 50;
-	public static string WINDOW_TAG = "Window";
+	public float initSpreadDelay = 2.0F;
+	public float spreadDelay = 2.0F;
+	public int lightAttempts = 50;
+	private static string WINDOW_TAG = "Window";
+	private static KeyCode RESTART_BUTTON = KeyCode.R;
+	private bool youAreTheBestAround = false;
 	
 
 	// Use this for initialization
 	void Start () {
 		
 		// Init
-		spreadDelay = SPREAD_TIMER_RATE;
+		burningWindows = initialFires;
 		// 
 		window = GameObject.FindGameObjectsWithTag (WINDOW_TAG);
 		
@@ -34,15 +35,26 @@ public class BuildingController : MonoBehaviour {
 		//			.Log ("Window "+i+ " is called: "+window[i].name);
 		//		}
 		for (int i = 0; i < initialFires; i++) spreadFire ();
-		StartCoroutine ("spreadRoutine", INIT_SPREAD_DELAY);
-		Invoke ("startRain", MAX_RUN_TIME);
+		StartCoroutine ("spreadRoutine", initSpreadDelay);
+		Invoke ("startRain", gameRunTime);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (raining) {
-			// Stop the fire from spreading
-			StopAllCoroutines();
+
+		if(youAreTheBestAround == false){
+			if (raining) {
+				// Stop the fire from spreading
+				StopAllCoroutines();
+			}
+
+			if (burningWindows <= 0) {
+				gameOver ();
+			}
+		} else {
+			if(Input.GetKeyDown(RESTART_BUTTON)){
+				Application.LoadLevel(Application.loadedLevel);
+			}
 		}
 	}
 	
@@ -58,7 +70,7 @@ public class BuildingController : MonoBehaviour {
 	void spreadFire(){
 		//Debug.Log ("Calling spreadFire()");
 		int r;
-		int c = LIGHT_ATTEMPTS;
+		int c = lightAttempts;
 		do {
 			////Debug.Log ("Generating random number to select a window");
 			r = Random.Range (0, window.Length);
@@ -66,7 +78,14 @@ public class BuildingController : MonoBehaviour {
 			////Debug.Log(window [r].GetComponent<WindowController>().burning+ "  "+c);
 		} while (c > 0 && window [r].GetComponent<WindowController>().burning);
 		////Debug.Log ("Lighting fire to window "+r+".");
-		window [r].GetComponent<WindowController> ().burning = true;
+		if(!window [r].GetComponent<WindowController> ().burning){
+			window [r].GetComponent<WindowController> ().burning = true;
+			if(burningWindows <= window.Length){
+				burningWindows++;
+			}
+				
+		}
+	
 		////Debug.Log ("Burning value of Window["+ r +"] = "+ window[r].GetComponent<WindowController>().burning);
 		
 	}
@@ -74,6 +93,13 @@ public class BuildingController : MonoBehaviour {
 	void startRain(){
 		//Debug.Log ("Start Raining");
 		raining = true;
+	}
+
+	void gameOver(){
+		raining = false;
+		CancelInvoke ("startRain");
+		//TODO Queue you're the best around
+
 	}
 	
 }
