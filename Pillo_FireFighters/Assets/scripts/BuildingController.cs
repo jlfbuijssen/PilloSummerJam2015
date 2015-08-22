@@ -3,47 +3,57 @@ using System.Collections;
 
 public class BuildingController : MonoBehaviour {
 	
-	public bool raining = false;
-	public float spreadTimer = 10.0F;
+	private bool raining = false;
 	//	public float elapsedTime;
 	public GameObject[] window;
-	float spreadDelay;
+	float fireSpreadDelay;
 	public int initialFires = 3;
 
+	// Time before it starts raining
+	public float delayRain = 100.0F;
+	// Time before the first random spreading of fire
+	public float initSpreadDelay = 2.0F;
+	// Time between fire spreads
+	public float fireSpreadRate = 2.0F;
+	public int lightAttempts = 50;
+	private int litWindows;
+	public bool youAreTheBestAround = false;
 
-	// public constants
-	//public static bool RANDOM = true;
-	public static float MAX_RUN_TIME = 100.0F;
-	//	public static int WINDOW_ROWS = 3;
-	//	public static int WINDOW_COLUMNS = 4;
-	public static float INIT_SPREAD_DELAY = 2.0F;
-	public static float SPREAD_TIMER_RATE = 2.0F;
-	public static int LIGHT_ATTEMPTS = 50;
-	public static string WINDOW_TAG = "Window";
+	//  public constants
+	//  public static bool RANDOM = true;
+	//  public static int WINDOW_ROWS = 3;
+	//  public static int WINDOW_COLUMNS = 4;
+	private static string WINDOW_TAG = "Window";
 	
 	
 	
 	// Use this for initialization
 	void Start () {
-		
+
 		// Init
-		spreadDelay = SPREAD_TIMER_RATE;
-		// 
 		window = GameObject.FindGameObjectsWithTag (WINDOW_TAG);
-		
-		//		for (int i = 0; i<window.Length; i++) {
-		//			.Log ("Window "+i+ " is called: "+window[i].name);
-		//		}
 		for (int i = 0; i < initialFires; i++) spreadFire ();
-		StartCoroutine ("spreadRoutine", INIT_SPREAD_DELAY);
-		Invoke ("startRain", MAX_RUN_TIME);
+		StartCoroutine ("spreadRoutine", initSpreadDelay);
+		Invoke ("startRain", delayRain);
+		litWindows = initialFires;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (raining) {
-			// Stop the fire from spreading
-			StopAllCoroutines();
+		if (!youAreTheBestAround) {
+			if (raining) {
+				// Stop the fire from spreading
+				StopAllCoroutines ();
+
+			}
+
+			if (litWindows == 0) {
+				gameOver ();
+			} else {
+				if(Input.GetKeyDown("R")){
+					Application.LoadLevel(Application.loadedLevel);
+				}
+			}
 		}
 	}
 	
@@ -53,13 +63,13 @@ public class BuildingController : MonoBehaviour {
 		
 		//	//Debug.Log ("Calling spreadFire()");
 		spreadFire ();
-		StartCoroutine ("spreadRoutine", spreadDelay);
+		StartCoroutine ("spreadRoutine", fireSpreadDelay);
 	}
 	
 	void spreadFire(){
 		//Debug.Log ("Calling spreadFire()");
 		int r;
-		int c = LIGHT_ATTEMPTS;
+		int c = lightAttempts;
 		do {
 			////Debug.Log ("Generating random number to select a window");
 			r = Random.Range (0, window.Length);
@@ -75,6 +85,11 @@ public class BuildingController : MonoBehaviour {
 	void startRain(){
 		//Debug.Log ("Start Raining");
 		raining = true;
+	}
+
+	void gameOver(){
+		youAreTheBestAround = true;
+		CancelInvoke("startRain");
 	}
 	
 }
