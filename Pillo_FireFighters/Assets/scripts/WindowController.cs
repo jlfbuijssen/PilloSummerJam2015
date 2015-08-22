@@ -19,21 +19,34 @@ public class WindowController : MonoBehaviour {
 	
 	//	// Use this for initialization
 	void Start () {
-		fireGrowRate = GameObject.Find ("player").GetComponent<Hose> ().fireGrowRate;
-		waterStrength = GameObject.Find ("player").GetComponent<Hose> ().hoseStrength;
+		fireGrowRate = GameObject.Find ("Player").GetComponent<Hose>().fireGrowRate;
+		waterStrength = GameObject.Find ("Player").GetComponent<Hose>().hoseStrength;
 	}
 	//	void OnTriggerEnter(Collider col){
 	//		print ("TEST");
 	//	
 	//	}
+
+
+	/*void OnParticleCollision(GameObject collider){
 	
-	void OnTriggerEnter(Collider col){
-		print (col.tag);
+		Rigidbody body = collider.GetComponent<Rigidbody> ();
+
+		if (body) {
+		
+		}
+	
+	}*/
+
+
+	void OnTriggerStay(Collider col){
+		//print (col.tag);
 		if (col.GetComponent<Collider>().CompareTag (COLLIDER_TAG)) {
 			//Debug.Log("Trigger Entered");
 			
 			if(burning){
-				fireStrength -= waterStrength;
+				fireStrength -= waterStrength*Time.deltaTime;
+				print (fireStrength);
 			}
 			
 		}
@@ -47,6 +60,8 @@ public class WindowController : MonoBehaviour {
 	
 	
 	void CheckFireState(){
+
+
 		
 		/*if (Input.GetKey ("space")) {
 			fireStrength ++;

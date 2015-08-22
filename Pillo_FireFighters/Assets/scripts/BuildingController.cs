@@ -31,7 +31,7 @@ public class BuildingController : MonoBehaviour {
 		window = GameObject.FindGameObjectsWithTag (WINDOW_TAG);
 		
 		//		for (int i = 0; i<window.Length; i++) {
-		//			Debug.Log ("Window "+i+ " is called: "+window[i].name);
+		//			.Log ("Window "+i+ " is called: "+window[i].name);
 		//		}
 		for (int i = 0; i < initialFires; i++) spreadFire ();
 		StartCoroutine ("spreadRoutine", INIT_SPREAD_DELAY);
@@ -47,32 +47,32 @@ public class BuildingController : MonoBehaviour {
 	}
 	
 	IEnumerator spreadRoutine(float delay){
-		Debug.Log ("Spreading fire in " + delay + " seconds...");
+		////Debug.Log ("Spreading fire in " + delay + " seconds...");
 		yield return new WaitForSeconds(delay);
 		
-		//	Debug.Log ("Calling spreadFire()");
+		//	//Debug.Log ("Calling spreadFire()");
 		spreadFire ();
 		StartCoroutine ("spreadRoutine", spreadDelay);
 	}
 	
 	void spreadFire(){
-		Debug.Log ("Calling spreadFire()");
+		//Debug.Log ("Calling spreadFire()");
 		int r;
 		int c = LIGHT_ATTEMPTS;
 		do {
-			//Debug.Log ("Generating random number to select a window");
+			////Debug.Log ("Generating random number to select a window");
 			r = Random.Range (0, window.Length);
 			c--;
-			//Debug.Log(window [r].GetComponent<WindowController>().burning+ "  "+c);
+			////Debug.Log(window [r].GetComponent<WindowController>().burning+ "  "+c);
 		} while (c > 0 && window [r].GetComponent<WindowController>().burning);
-		//Debug.Log ("Lighting fire to window "+r+".");
+		////Debug.Log ("Lighting fire to window "+r+".");
 		window [r].GetComponent<WindowController> ().burning = true;
-		//Debug.Log ("Burning value of Window["+ r +"] = "+ window[r].GetComponent<WindowController>().burning);
+		////Debug.Log ("Burning value of Window["+ r +"] = "+ window[r].GetComponent<WindowController>().burning);
 		
 	}
 	
 	void startRain(){
-		Debug.Log ("Start Raining");
+		//Debug.Log ("Start Raining");
 		raining = true;
 	}
 	
