@@ -10,14 +10,17 @@ public class WindowController : MonoBehaviour {
 //	void Start () {
 //	
 //	}
-	void OnCollisionEnter(Collision col){
-		if (col.collider.tag.Equals (COLLIDER_TAG)) {
+	void OnTriggerEnter(Collision col){
+		print (col.collider.tag);
+		if (col.collider.CompareTag (COLLIDER_TAG)) {
+			print ("Trigger Entered");
 			debug_col = true;
 		}
 	}
 
-	void OnCollisionExit(Collision col){
+	void OnTriggerExit(Collision col){
 		if (col.collider.tag.Equals (COLLIDER_TAG)) {
+			print ("Exit Trigger");
 			debug_col = false;
 		}
 	}
