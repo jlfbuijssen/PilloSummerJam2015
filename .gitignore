@@ -83,5 +83,33 @@ Pillo_FireFighters/Pillo_FireFighters.userprefs
 *.meta
 *.userprefs
 Pillo_FireFighters/Pillo_FireFighters-csharp.sln
+<<<<<<< HEAD
 Pillo_FireFighters/Pillo_FireFighters-csharp.sln
 Pillo_FireFighters/Pillo_FireFighters.userprefs
+=======
+*.sln
+*.userprefs
+*.sln
+*.sln
+>>>>>>> origin/master
+Pillo_FireFighters/Assembly-CSharp-vs.csproj
+Pillo_FireFighters/Pillo_FireFighters.userprefs
+*.cs
+Pillo_FireFighters/Assets/SmokeSystem/Materials/Smoke1.mat
+*.mat
+Pillo_FireFighters/Assets/SmokeSystem/Smoke2.png
+*.png
+*.cs
+Pillo_FireFighters/Assets/Standard Assets/Particles/Sources/Materials/Smoke5.mat
+*.tif
+Pillo_FireFighters/Pillo_FireFighters.userprefs
+Pillo_FireFighters/Assembly-CSharp-vs.csproj
+Pillo_FireFighters/Assembly-CSharp.csproj
+*.csproj
+Pillo_FireFighters/Pillo_FireFighters.userprefs
+Pillo_FireFighters/Pillo_FireFighters.userprefs
+Pillo_FireFighters/Assets/SmokeSystem/Materials/Smoke1.mat
+Pillo_FireFighters/Pillo_FireFighters.userprefs
+*.csproj
+*.userprefs
+*.mat
