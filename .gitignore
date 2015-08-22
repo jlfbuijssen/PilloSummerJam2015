@@ -123,3 +123,6 @@ Pillo_FireFighters/Assembly-CSharp-vs.csproj
 Pillo_FireFighters/Pillo_FireFighters.userprefs
 >>>>>>> origin/master
 Pillo_FireFighters/Assets/ScriptsBackup.zip
+*.sln
+*.userprefs
+Pillo_FireFighters/Assets/scripts/BuildingController.cs.BAC
