@@ -27,7 +27,7 @@ public class BuildingController : MonoBehaviour {
 	void Start () {
 		
 		// Init
-		burningWindows = initialFires;
+		//burningWindows = initialFires;
 		// 
 		window = GameObject.FindGameObjectsWithTag (WINDOW_TAG);
 		
@@ -56,6 +56,7 @@ public class BuildingController : MonoBehaviour {
 				Application.LoadLevel(Application.loadedLevel);
 			}
 		}
+		print (burningWindows);
 	}
 	
 	IEnumerator spreadRoutine(float delay){
@@ -99,6 +100,9 @@ public class BuildingController : MonoBehaviour {
 		raining = false;
 		CancelInvoke ("startRain");
 		//TODO Queue you're the best around
+		//print ("DIE!!!");
+		GameObject.Find("Main Camera").GetComponent<CameraSound>().PlayThatMusic();
+		youAreTheBestAround = true;
 
 	}
 	
