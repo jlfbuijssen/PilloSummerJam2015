@@ -18,11 +18,14 @@ public class WindowController : MonoBehaviour {
 	private float maxFireStrength = 99.0f;
 	private int maxFireState = 3;
 	private int fireState = 0;
+	private AudioSource audioReward;
 	
 	//	// Use this for initialization
 	void Start () {
 		fireGrowRate = GameObject.Find ("Player").GetComponent<Hose>().fireGrowRate;
 		waterStrength = GameObject.Find ("Player").GetComponent<Hose>().hoseStrength;
+
+		audioReward = GetComponent<AudioSource>();
 	}
 	//	void OnTriggerEnter(Collider col){
 	//		print ("TEST");
@@ -103,6 +106,8 @@ public class WindowController : MonoBehaviour {
 			burning = false;
 			
 			fireState = 0;
+
+			audioReward.Play();
 
 			Destroy (currentFire);
 			currentFire = null;
