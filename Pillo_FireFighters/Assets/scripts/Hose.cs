@@ -16,8 +16,6 @@ public class Hose : MonoBehaviour {
 	public GameObject animState2;
 	public GameObject animState3;
 
-	public AudioClip waterSmall;
-	public AudioClip waterLarge;
 	public float audioVolume = 0.5f;
 
 	private float maxPressure = 100.0f;
@@ -41,12 +39,10 @@ public class Hose : MonoBehaviour {
 		AudioSource[] allSounds = GetComponents<AudioSource>();
 
 		sounds1 = allSounds[0];
-		sounds1.clip = waterSmall;
 		sounds1.volume = 1.0f;
 		sounds1.Play ();
 
 		sounds2 = allSounds[1];
-		sounds2.clip = waterLarge;
 		sounds2.volume = 0.0f;
 		sounds2.Play ();
 	
@@ -54,7 +50,7 @@ public class Hose : MonoBehaviour {
 
 	void Player1(){
 
-		turnDirection = (Mathf.Round(((PilloController.GetSensor (PilloID.Pillo1) - 0.5f) * turnSpeed)*10))/10;
+		turnDirection = (Mathf.Round(((PilloController.GetSensor (PilloID.Pillo1) - 0.5f) * turnSpeed*Time.deltaTime)*10))/10;
 
 		if ((this.transform.eulerAngles.y < maxTurnAngle || this.transform.eulerAngles.y > maxTurnAngle + 10.0f ) && turnDirection > 0.0f) {
 

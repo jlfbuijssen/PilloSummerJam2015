@@ -9,6 +9,9 @@ public class BuildingController : MonoBehaviour {
 	public int initialFires = 3;
 	public int burningWindows;
 
+	[HideInInspector]
+	public int burningIntensity = 0;
+
 
 	// public constants
 	//public static bool RANDOM = true;
@@ -21,6 +24,8 @@ public class BuildingController : MonoBehaviour {
 	private static string WINDOW_TAG = "Window";
 	private static KeyCode RESTART_BUTTON = KeyCode.R;
 	private bool youAreTheBestAround = false;
+	private AudioSource sounds1;
+	private AudioSource sounds2;
 	
 
 	// Use this for initialization
@@ -37,6 +42,17 @@ public class BuildingController : MonoBehaviour {
 		for (int i = 0; i < initialFires; i++) spreadFire ();
 		StartCoroutine ("spreadRoutine", initSpreadDelay);
 		Invoke ("startRain", gameRunTime);
+
+		//sound stuff thingies
+		AudioSource[] allSounds = GetComponents<AudioSource>();
+		
+		sounds1 = allSounds[0];
+		sounds1.volume = 0.1f;
+		sounds1.Play ();
+		
+		sounds2 = allSounds[1];
+		sounds2.volume = 0.0f;
+		sounds2.Play ();
 	}
 	
 	// Update is called once per frame
@@ -56,7 +72,26 @@ public class BuildingController : MonoBehaviour {
 				Application.LoadLevel(Application.loadedLevel);
 			}
 		}
-		print (burningWindows);
+
+		SoundStuff ();
+	}
+
+	void SoundStuff(){
+
+
+
+		if (burningIntensity <= 20) {
+			sounds1.volume = burningIntensity / 30.0f;
+			sounds2.volume = 0.0f;
+		}
+		else if (burningIntensity > 15 && sounds1.volume != 1.0f) {
+			sounds1.volume = 0.8f;
+		}
+
+		if (burningIntensity > 15 && burningIntensity < 30) {
+			sounds2.volume = (burningIntensity-10)/15.0f;		
+		}
+	
 	}
 	
 	IEnumerator spreadRoutine(float delay){

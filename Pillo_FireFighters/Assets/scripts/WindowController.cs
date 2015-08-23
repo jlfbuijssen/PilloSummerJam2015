@@ -55,8 +55,12 @@ public class WindowController : MonoBehaviour {
 	}
 	
 	void GrowFire(){
+
+		if (fireStrength < 120) {
 		
-		fireStrength += fireGrowRate * Time.deltaTime;
+			fireStrength += fireGrowRate * Time.deltaTime;
+		
+		}
 		
 	}
 	
@@ -77,6 +81,8 @@ public class WindowController : MonoBehaviour {
 		if ((maxFireStrength / (maxFireState-1))* (fireState-1) > fireStrength) {
 			
 			fireState --;
+
+			GameObject.Find("WindowTriggers").GetComponent<BuildingController>().burningIntensity --;
 			
 			ChangeFireState();
 			
@@ -85,7 +91,9 @@ public class WindowController : MonoBehaviour {
 		if ((maxFireStrength / (maxFireState-1))*fireState < fireStrength) {
 			
 			fireState ++;
-			
+
+			GameObject.Find("WindowTriggers").GetComponent<BuildingController>().burningIntensity ++;
+
 			ChangeFireState();
 			
 		}
